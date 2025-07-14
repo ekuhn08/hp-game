@@ -23,12 +23,19 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // If they guess correctly, show success message and trigger animation
-    if (guess === targetNum) {
-      alert("Great job, wise Wizard! You may now enter the Numerology classroom!");
-      modal.style.display = "none"; // Hide the modal
-      document.getElementById("broomstick").classList.add("fly"); // Start broom animation
-    } 
+    const supportButton = document.querySelector(".support-me");
+
+// Show modal + hide support button
+modal.style.display = "flex";
+supportButton.classList.add("hide");
+
+// When guess is correct:
+if (guess === targetNum) {
+  alert("Great job, wise Wizard! You may now enter the Numerology classroom!");
+  modal.style.display = "none";
+  supportButton.classList.remove("hide"); // Show support button again
+  document.getElementById("broomstick").classList.add("fly");
+}
     // If the guess is too high
     else if (guess > targetNum) {
       alert("Too high, Muggle! Enter a new number between 1 and 5:");
