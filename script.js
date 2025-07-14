@@ -18,7 +18,7 @@
       const guess = parseInt(guessInput.value);
 
       if (!guess || guess < 1 || guess > 5) {
-        alert("Try again! Enter a number between 1 and 5.");
+        alert("Wrong! Come on Muggle, you can only input numbers. Guess a number betweeen 1 and 5.");
         return;
       }
 
@@ -29,9 +29,9 @@
         supportButton.style.pointerEvents = "auto";
         broomstick.classList.add("fly");
       } else if (guess > targetNum) {
-        alert("Too high! Try a lower number.");
+        alert("Too high, Muggle! Enter a new number between 1 and 5:");
       } else {
-        alert("Too low! Try a higher number.");
+        alert("Too low, Mud Blood! Enter a new number between 1 and 5:");
       }
     });
   });
