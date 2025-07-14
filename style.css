@@ -258,3 +258,7 @@ button:hover {
   background-color: #fff275;
   transform: scale(1.05);
 }
+
+.hide {
+  display: none !important;
+}
