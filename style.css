@@ -6,8 +6,6 @@ html, body {
   overflow-x: hidden;
 }
 
-
-
 .hogwarts-wrapper {
   position: fixed; /* Covers the whole screen */
   top: 0;
