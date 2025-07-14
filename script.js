@@ -1,51 +1,46 @@
-// Wait for the whole DOM to be ready before running this logic
-window.addEventListener("DOMContentLoaded", () => {
-  // Get references to modal elements
-  const modal = document.getElementById("guessModal");
-  const submitBtn = document.getElementById("submitGuess");
-  const guessInput = document.getElementById("guessInput");
 
-  // Generate a random number between 1 and 5
-  const targetNum = Math.floor(Math.random() * 5) + 1;
-  console.log("Target number:", targetNum); // For debugging
+  window.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("guessModal");
+    const submitBtn = document.getElementById("submitGuess");
+    const guessInput = document.getElementById("guessInput");
+    const supportButton = document.querySelector(".support-me");
+    const broomstick = document.getElementById("broomstick");
 
-  // Show the modal overlay so the user can make a guess
-  modal.style.display = "flex";
+    const targetNum = Math.floor(Math.random() * 5) + 1;
+    console.log("Target number:", targetNum);
 
-  // When the user clicks the submit button...
-  submitBtn.addEventListener("click", () => {
-    // Get the number they entered and convert to an integer
-    let guess = parseInt(guessInput.value);
+    // Show modal & hide support button at start
+    modal.style.display = "flex";
+   supportButton.style.opacity = "0";
+   supportButton.style.pointerEvents = "none";
 
-    // If the input is not a number, show an error and return
-    if (!guess) {
-      alert("Wrong! Come on Muggle, you can only input numbers. Guess a number betweeen 1 and 5.");
-      return;
-    }
+    submitBtn.addEventListener("click", () => {
+      const guess = parseInt(guessInput.value);
 
-    // If they guess correctly, show success message and trigger animation
-    if (guess === targetNum) {
-      alert("Great job, wise Wizard! You may now enter the Numerology classroom!");
-      modal.style.display = "none"; // Hide the modal
-      document.getElementById("broomstick").classList.add("fly"); // Start broom animation
-    } 
-    // If the guess is too high
-    else if (guess > targetNum) {
-      alert("Too high, Muggle! Enter a new number between 1 and 5:");
-    } 
-    // If the guess is too low
-    else {
-      alert("Too low, Mud Blood! Enter a new number between 1 and 5:");
-    }
+      if (!guess || guess < 1 || guess > 5) {
+        alert("Try again! Enter a number between 1 and 5.");
+        return;
+      }
+
+      if (guess === targetNum) {
+        alert("Great job, wise Wizard! You may now enter the Numerology classroom!");
+        modal.style.display = "none";
+        supportButton.style.opacity = "1";
+        supportButton.style.pointerEvents = "auto";
+        broomstick.classList.add("fly");
+      } else if (guess > targetNum) {
+        alert("Too high! Try a lower number.");
+      } else {
+        alert("Too low! Try a higher number.");
+      }
+    });
   });
-});
 
-// Function to check the user's input against the correct house name
   function checkInput() {
     const input = document.getElementById("userInput").value.trim();
     if (input === "Gryffindor") {
       alert("Correct, wonderful Warlock! Welcome to Gryffindor House!");
     } else {
-      alert("Come on, Muggle. You did not guess correctly, try again (hint: the correct house's mascot is a Lion 🦁).");
+      alert("Wrong again, Muggle! Hint: the correct house mascot is a Lion 🦁.");
     }
   }
