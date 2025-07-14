@@ -4,16 +4,13 @@ window.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("guessModal");
   const submitBtn = document.getElementById("submitGuess");
   const guessInput = document.getElementById("guessInput");
-  const supportButton = document.querySelector(".support-me");
 
   // Generate a random number between 1 and 5
   const targetNum = Math.floor(Math.random() * 5) + 1;
   console.log("Target number:", targetNum); // For debugging
 
-  // Show the modal overlay and hide support button immediately
+  // Show the modal overlay so the user can make a guess
   modal.style.display = "flex";
-  supportButton.classList.add("hide");
-  console.log("Support button hidden on modal open");
 
   // When the user clicks the submit button...
   submitBtn.addEventListener("click", () => {
@@ -30,7 +27,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (guess === targetNum) {
       alert("Great job, wise Wizard! You may now enter the Numerology classroom!");
       modal.style.display = "none"; // Hide the modal
-      supportButton.classList.remove("hide"); // Show support button again
       document.getElementById("broomstick").classList.add("fly"); // Start broom animation
     } 
     // If the guess is too high
@@ -45,11 +41,11 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Function to check the user's input against the correct house name
-function checkInput() {
-  const input = document.getElementById("userInput").value.trim();
-  if (input === "Gryffindor") {
-    alert("Correct, wonderful Warlock! Welcome to Gryffindor House!");
-  } else {
-    alert("Come on, Muggle. You did not guess correctly, try again (hint: the correct house's mascot is a Lion 🦁).");
+  function checkInput() {
+    const input = document.getElementById("userInput").value.trim();
+    if (input === "Gryffindor") {
+      alert("Correct, wonderful Warlock! Welcome to Gryffindor House!");
+    } else {
+      alert("Come on, Muggle. You did not guess correctly, try again (hint: the correct house's mascot is a Lion 🦁).");
+    }
   }
-}
